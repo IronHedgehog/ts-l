@@ -2,11 +2,22 @@
 //   name: string;
 //   age: number;
 // } = {
-const person = {
+const person: {
+  name: string;
+  age: number;
+  hobbies: string[];
+  role: [number, string]; // Tuple - fixed length array
+} = {
   name: "Artem",
   age: 23,
   hobbies: ["Sport", "Cooking"],
+  role: [1, "author"],
 };
+
+//person.role.push("admin"); // Exception
+// person.role[1] = 10; // Error
+
+//person.role = [10, "a", "aasd"]; // Error
 
 let favoriteActives: string[];
 favoriteActives = ["something"];
