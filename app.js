@@ -5,7 +5,15 @@
 var person = {
     name: "Artem",
     age: 23,
+    hobbies: ["Sport", "Cooking"],
 };
+var favoriteActives;
+favoriteActives = ["something"];
+for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
+    var hobby = _a[_i];
+    console.log(hobby.toLowerCase());
+    // console.log(hobby.map()); // ERROR
+}
 console.log(person.age);
 // NESTED OBJECTS
 // {

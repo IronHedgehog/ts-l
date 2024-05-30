@@ -5,8 +5,16 @@
 const person = {
   name: "Artem",
   age: 23,
+  hobbies: ["Sport", "Cooking"],
 };
 
+let favoriteActives: string[];
+favoriteActives = ["something"];
+
+for (const hobby of person.hobbies) {
+  console.log(hobby.toLowerCase());
+  // console.log(hobby.map()); // ERROR
+}
 console.log(person.age);
 
 // NESTED OBJECTS
