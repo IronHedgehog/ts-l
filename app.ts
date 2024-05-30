@@ -19,15 +19,21 @@
 
 //person.role = [10, "a", "aasd"]; // Error
 
-const ADMIN = 0;
-const READ_ONLY = 1;
-const AUTHOR = 2;
+// const ADMIN = 0;
+// const READ_ONLY = 1;
+// const AUTHOR = 2;
+
+enum Role {
+  ADMIN,
+  READ_ONLY,
+  AUTHOR,
+}
 
 const person = {
   name: "Artem",
   age: 23,
   hobbies: ["Sport", "Cooking"],
-  role: ADMIN,
+  role: Role.ADMIN,
 };
 
 let favoriteActives: string[];
@@ -59,6 +65,6 @@ const product = {
   },
 };
 
-if (person.role === ADMIN) {
+if (person.role === Role.ADMIN) {
   console.log("is admin");
 }

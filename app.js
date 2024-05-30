@@ -16,14 +16,20 @@
 //person.role.push("admin"); // Exception
 // person.role[1] = 10; // Error
 //person.role = [10, "a", "aasd"]; // Error
-var ADMIN = 0;
-var READ_ONLY = 1;
-var AUTHOR = 2;
+// const ADMIN = 0;
+// const READ_ONLY = 1;
+// const AUTHOR = 2;
+var Role;
+(function (Role) {
+    Role[Role["ADMIN"] = 0] = "ADMIN";
+    Role[Role["READ_ONLY"] = 1] = "READ_ONLY";
+    Role[Role["AUTHOR"] = 2] = "AUTHOR";
+})(Role || (Role = {}));
 var person = {
     name: "Artem",
     age: 23,
     hobbies: ["Sport", "Cooking"],
-    role: ADMIN,
+    role: Role.ADMIN,
 };
 var favoriteActives;
 favoriteActives = ["something"];
@@ -52,6 +58,6 @@ var product = {
         description: "A great carpet - almost brand-new!",
     },
 };
-if (person.role === ADMIN) {
+if (person.role === Role.ADMIN) {
     console.log("is admin");
 }
