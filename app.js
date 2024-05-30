@@ -11,7 +11,8 @@ function add(n1, n2, showResult, phrase) {
         return result;
     }
 }
-var num1 = 10;
+var num1;
+num1 = 5;
 var num2 = 5.5;
 var printResult = false;
 var resultPhrase = "result is: ";
