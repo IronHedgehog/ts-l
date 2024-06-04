@@ -14,4 +14,5 @@ function addAndHandle(n1, n2, callBack) {
 }
 addAndHandle(20, 10, function (num) {
     console.log(num);
+    return false;
 });

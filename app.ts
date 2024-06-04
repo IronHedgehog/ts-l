@@ -21,4 +21,5 @@ function addAndHandle(n1: number, n2: number, callBack: (a: number) => void) {
 
 addAndHandle(20, 10, (num) => {
   console.log(num);
+  return false;
 });
