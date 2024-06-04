@@ -1,6 +1,7 @@
 // union type
 
 type combinable = number | string;
+type conversionDescriptor = "is-number" | "is-string";
 
 function combine(
   // union type
@@ -10,7 +11,7 @@ function combine(
   // input2: number | string,
   input2: combinable,
   // Literal type
-  resultConversion: "is-number" | "is-string"
+  resultConversion: conversionDescriptor
 ) {
   let result;
   if (
