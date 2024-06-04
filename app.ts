@@ -1,8 +1,15 @@
 // union type
 
+type combinable = number | string;
+
 function combine(
-  input1: number | string,
-  input2: number | string,
+  // union type
+  // input1: number | string,
+  input1: combinable,
+
+  // input2: number | string,
+  input2: combinable,
+  // Literal type
   resultConversion: "is-number" | "is-string"
 ) {
   let result;
