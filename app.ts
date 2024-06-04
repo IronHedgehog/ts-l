@@ -1,70 +1,17 @@
-// const person: {
-//   name: string;
-//   age: number;
-// } = {
-// const person: {
-//   name: string;
-//   age: number;
-//   hobbies: string[];
-//   role: [number, string]; // Tuple - fixed length array
-// } = {
-//   name: "Artem",
-//   age: 23,
-//   hobbies: ["Sport", "Cooking"],
-//   role: [1, "author"],
-// };
+// union type
 
-//person.role.push("admin"); // Exception
-// person.role[1] = 10; // Error
-
-//person.role = [10, "a", "aasd"]; // Error
-
-// const ADMIN = 0;
-// const READ_ONLY = 1;
-// const AUTHOR = 2;
-
-enum Role {
-  ADMIN = 100,
-  READ_ONLY,
-  AUTHOR,
+function combine(input1: number | string, input2: number | string) {
+  let result;
+  if (typeof input1 === "number" && typeof input2 === "number") {
+    result = input1 + input2;
+  } else {
+    result = input1.toString() + input2.toString();
+  }
+  return result;
 }
 
-const person = {
-  name: "Artem",
-  age: 23,
-  hobbies: ["Sport", "Cooking"],
-  role: Role.ADMIN,
-};
+const combinedAges = combine(30, 26);
+console.log(combinedAges);
 
-let favoriteActives: string[];
-favoriteActives = ["something"];
-
-for (const hobby of person.hobbies) {
-  console.log(hobby.toLowerCase());
-  // console.log(hobby.map()); // ERROR
-}
-console.log(person.age);
-
-// NESTED OBJECTS
-// {
-//   id: string;
-//   price: number;
-//   tags: string[];
-//   details: {
-//     title: string;
-//     description: string;
-//   }
-// }
-const product = {
-  id: "abc1",
-  price: 12.99,
-  tags: ["great-offer", "hot-and-new"],
-  details: {
-    title: "Red Carpet",
-    description: "A great carpet - almost brand-new!",
-  },
-};
-
-if (person.role === Role.ADMIN) {
-  console.log("is admin");
-}
+const combinedNames = combine("Max", "Anna");
+console.log(combinedNames);
