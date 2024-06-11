@@ -1,18 +1,16 @@
-function add(n1, n2) {
-    return n1 + n2;
+// unknown
+// if you wont type any, type unknown (need type checking)
+var userInput;
+var userName;
+userInput = 14;
+userInput = "User";
+// type checking
+if (typeof userInput === "string") {
+    userName = userInput;
 }
-function printResult(num) {
-    console.log(num);
+//never
+// never - something what stop you script(infinity loop, throws error etc)
+function generateError(message, code) {
+    throw { message: message, errorCode: code };
 }
-printResult(add(20, 10));
-var combineValues;
-combineValues = add;
-console.log(add(20, 10));
-function addAndHandle(n1, n2, callBack) {
-    var result = n1 + n2;
-    callBack(result);
-}
-addAndHandle(20, 10, function (num) {
-    console.log(num);
-    return false;
-});
+generateError("something went wrong", 500);
