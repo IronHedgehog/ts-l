@@ -3,11 +3,11 @@ let age = 20;
 
 age = 29;
 
-function add(n1: number, n2: number): number {
-  let result;
-  result = n1 + n2;
-  return result;
-}
+// function add(n1: number, n2: number): number {
+//   let result;
+//   result = n1 + n2;
+//   return result;
+// }
 
 if (age > 20) {
   //   var isOld = true;
@@ -15,3 +15,13 @@ if (age > 20) {
 }
 
 // console.log(isOld);
+
+const add = (n1: number, n2: number): number => {
+  return n1 + n2;
+};
+
+// const showResult: (a: number | string) => void = (result) =>
+//   console.log(result);
+const showResult = (result: number | string): void => console.log(result);
+
+showResult(add(5, 10));
