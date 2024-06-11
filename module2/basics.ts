@@ -1,4 +1,9 @@
-function add(n1: number, n2: number, showResult: boolean, phrase: string) {
+function addNumbers(
+  n1: number,
+  n2: number,
+  showResult: boolean,
+  phrase: string
+) {
   //JS
   //   if (typeof n1 !== "number" || typeof n2 !== "number") {
   //     throw new Error("Incorrect input");
@@ -17,4 +22,4 @@ const num2 = 5.5;
 const printResult = false;
 const resultPhrase = "result is: ";
 
-add(num1, num2, printResult, resultPhrase);
+addNumbers(num1, num2, printResult, resultPhrase);
