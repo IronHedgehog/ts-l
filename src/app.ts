@@ -16,15 +16,15 @@ if (age > 20) {
 
 // console.log(isOld);
 
-const add = (n1: number, n2: number = 1): number => {
-  return n1 + n2;
-};
+// const add = (n1: number, n2: number = 1): number => {
+//   return n1 + n2;
+// };
 
 // const showResult: (a: number | string) => void = (result) =>
 //   console.log(result);
-const showResult = (result: number | string): void => console.log(result);
+// const showResult = (result: number | string): void => console.log(result);
 
-showResult(add(5));
+// showResult(add(5));
 
 const hobbies = ["Sports", "Cooking"];
 const activeHobbies = ["hiking", ...hobbies];
@@ -37,3 +37,12 @@ const person = {
 };
 
 const newPerson = { ...person }; // perfect copy
+
+const add = (...numbers: number[]): number => {
+  return numbers.reduce((currentResult, currentValue) => {
+    return currentResult + currentValue;
+  }, 0);
+};
+
+const addedNumbers = add(2, 5, 1, 2, 6, 7, 8, 0);
+console.log(addedNumbers);
