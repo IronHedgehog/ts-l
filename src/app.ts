@@ -16,7 +16,7 @@ if (age > 20) {
 
 // console.log(isOld);
 
-const add = (n1: number, n2: number): number => {
+const add = (n1: number, n2: number = 1): number => {
   return n1 + n2;
 };
 
@@ -24,4 +24,4 @@ const add = (n1: number, n2: number): number => {
 //   console.log(result);
 const showResult = (result: number | string): void => console.log(result);
 
-showResult(add(5, 10));
+showResult(add(5));
