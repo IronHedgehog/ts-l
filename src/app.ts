@@ -25,3 +25,15 @@ const add = (n1: number, n2: number = 1): number => {
 const showResult = (result: number | string): void => console.log(result);
 
 showResult(add(5));
+
+const hobbies = ["Sports", "Cooking"];
+const activeHobbies = ["hiking", ...hobbies];
+
+activeHobbies.push(...hobbies);
+
+const person = {
+  name: "User",
+  age: "30",
+};
+
+const newPerson = { ...person }; // perfect copy
