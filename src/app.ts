@@ -27,6 +27,7 @@ somethingDepartment.addEmployee("Max");
 somethingDepartment.addEmployee("Petro");
 
 // somethingDepartment.employees[2] = "Ann"; ERROR because of employees private field
+somethingDepartment.printEmployeeInfo();
 
 somethingDepartment.describe();
 
