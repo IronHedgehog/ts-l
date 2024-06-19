@@ -2,14 +2,15 @@ class Department {
   // private id: string;
   // public name: string; // all variables public by default
   private employees: string[] = [];
-
-  constructor(private id: string, public name: string) {
+  // readonly - access modifier - blocked update value
+  constructor(private readonly id: string, public name: string) {
     // short init constructor variables
     // this.name = name;
     // this.id = id;
   }
 
   describe(this: Department) {
+    // this.id = "21"; ERROR (ID - readonly property)
     console.log(`Department:(${this.id}) ${this.name}`);
   }
 
