@@ -1,13 +1,16 @@
 class Department {
-  public name: string; // all variables public by default
+  // private id: string;
+  // public name: string; // all variables public by default
   private employees: string[] = [];
 
-  constructor(n: string) {
-    this.name = n;
+  constructor(private id: string, public name: string) {
+    // short init constructor variables
+    this.name = name;
+    this.id = id;
   }
 
   describe(this: Department) {
-    console.log(`Department: ${this.name}`);
+    console.log(`Department:(${this.id}) ${this.name}`);
   }
 
   addEmployee(employee: string) {
@@ -21,7 +24,7 @@ class Department {
   }
 }
 
-const somethingDepartment = new Department("somethingDepartment");
+const somethingDepartment = new Department("sd", "somethingDepartment");
 
 somethingDepartment.addEmployee("Max");
 somethingDepartment.addEmployee("Petro");
