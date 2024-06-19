@@ -46,3 +46,7 @@ const add = (...numbers: number[]): number => {
 
 const addedNumbers = add(2, 5, 1, 2, 6, 7, 8, 0);
 console.log(addedNumbers);
+
+const [hobby1, hobby2, ...another] = hobbies; // array destructure
+
+console.log(hobbies, hobby1, hobby2);
