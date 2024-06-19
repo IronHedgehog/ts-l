@@ -5,8 +5,8 @@ class Department {
 
   constructor(private id: string, public name: string) {
     // short init constructor variables
-    this.name = name;
-    this.id = id;
+    // this.name = name;
+    // this.id = id;
   }
 
   describe(this: Department) {
