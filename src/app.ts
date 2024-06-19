@@ -1,7 +1,7 @@
-const named = "User";
-let age = 20;
+// const named = "User";
+// let age = 20;
 
-age = 29;
+// age = 29;
 
 // function add(n1: number, n2: number): number {
 //   let result;
@@ -9,10 +9,10 @@ age = 29;
 //   return result;
 // }
 
-if (age > 20) {
-  //   var isOld = true;
-  //   let isOld = true;
-}
+// if (age > 20) {
+//   var isOld = true;
+//   let isOld = true;
+// }
 
 // console.log(isOld);
 
@@ -32,7 +32,7 @@ const activeHobbies = ["hiking", ...hobbies];
 activeHobbies.push(...hobbies);
 
 const person = {
-  name: "User",
+  firstName: "User",
   age: "30",
 };
 
@@ -50,3 +50,7 @@ console.log(addedNumbers);
 const [hobby1, hobby2, ...another] = hobbies; // array destructure
 
 console.log(hobbies, hobby1, hobby2);
+
+const { firstName: userName, age } = person; // object destructure firstName: userName, - rename
+
+console.log(userName, age);
