@@ -46,6 +46,7 @@ class ITDepartment extends Department {
 
 class AccountingDepartment extends Department {
   private lastReport: string;
+  private static instance: AccountingDepartment;
 
   public get mostRecentReport(): string {
     // public stay by default
@@ -62,11 +63,18 @@ class AccountingDepartment extends Department {
     this.addReports(text);
   }
 
-  constructor(id: string, private reports: string[]) {
+  private constructor(id: string, private reports: string[]) {
     super(id, "Accounting");
     this.lastReport = reports[reports.length - 1];
   }
 
+  static getInstance() {
+    if (this.instance) {
+      return this.instance;
+    }
+    this.instance = new AccountingDepartment("d2", []);
+    return this.instance;
+  }
   describe(this: AccountingDepartment): void {
     console.log("Accounting department ID: - " + this.id);
   }
@@ -103,7 +111,10 @@ it.describe();
 
 console.log(it);
 
-const AccDepartment = new AccountingDepartment("d2", []);
+const AccDepartment = AccountingDepartment.getInstance();
+const AccDepartment2 = AccountingDepartment.getInstance();
+
+console.log(AccDepartment === AccDepartment2); // one instance because of singletone(private constructor)
 
 // AccDepartment.mostRecentReport; // getter throw error because no reports at this moment
 AccDepartment.mostRecentReport = "another one report,nice xD";
