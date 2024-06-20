@@ -1,10 +1,10 @@
-class Department {
+abstract class Department {
   static year = 2024;
   // private id: string;
   // public name: string; // all variables public by default
   protected employees: string[] = [];
   // readonly - access modifier - blocked update value
-  constructor(private readonly id: string, public name: string) {
+  constructor(protected readonly id: string, public name: string) {
     // short init constructor variables
     // this.name = name;
     // this.id = id;
@@ -15,10 +15,9 @@ class Department {
     return { name };
   }
 
-  describe(this: Department) {
-    // this.id = "21"; ERROR (ID - readonly property)
-    console.log(`Department:(${this.id}) ${this.name}`);
-  }
+  abstract describe(this: Department): void;
+  // this.id = "21"; ERROR (ID - readonly property)
+  // console.log(`Department:(${this.id}) ${this.name}`);
 
   addEmployee(employee: string) {
     // add validation
@@ -39,6 +38,9 @@ class ITDepartment extends Department {
   constructor(id: string, admins: string[]) {
     super(id, "IT"); // super must be first
     this.admins = admins;
+  }
+  describe(this: ITDepartment): void {
+    console.log("ITDepartment ID: - " + this.id);
   }
 }
 
@@ -65,7 +67,11 @@ class AccountingDepartment extends Department {
     this.lastReport = reports[reports.length - 1];
   }
 
-  addEmployee(name: string): void {
+  describe(this: AccountingDepartment): void {
+    console.log("Accounting department ID: - " + this.id);
+  }
+
+  addEmployee(this: AccountingDepartment, name: string): void {
     if (name === "Artem") {
       return;
     }
@@ -86,6 +92,7 @@ class AccountingDepartment extends Department {
 
 const it = new ITDepartment("sd", []);
 
+it.describe();
 it.addEmployee("Max");
 it.addEmployee("Petro");
 
@@ -107,6 +114,8 @@ AccDepartment.printReports();
 AccDepartment.addEmployee("Artem");
 AccDepartment.addEmployee("Max");
 AccDepartment.printEmployeeInfo();
+
+AccDepartment.describe();
 
 // const copyOfSomethingDepartment = { describe: somethingDepartment.describe }; ERROR because need Department class signature
 // const copyOfSomethingDepartment = {
