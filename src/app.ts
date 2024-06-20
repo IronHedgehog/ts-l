@@ -25,15 +25,43 @@ class Department {
   }
 }
 
-const somethingDepartment = new Department("sd", "somethingDepartment");
+class ITDepartment extends Department {
+  admins: string[];
+  constructor(id: string, admins: string[]) {
+    super(id, "IT"); // super must be first
+    this.admins = admins;
+  }
+}
 
-somethingDepartment.addEmployee("Max");
-somethingDepartment.addEmployee("Petro");
+class AccountingDepartment extends Department {
+  constructor(id: string, private reports: string[]) {
+    super(id, "Accounting");
+  }
+
+  addReports(text: string) {
+    this.reports.push(text);
+  }
+
+  printReports() {
+    console.log(this.reports);
+  }
+}
+
+const it = new ITDepartment("sd", []);
+
+it.addEmployee("Max");
+it.addEmployee("Petro");
 
 // somethingDepartment.employees[2] = "Ann"; ERROR because of employees private field
-somethingDepartment.printEmployeeInfo();
+it.printEmployeeInfo();
 
-somethingDepartment.describe();
+it.describe();
+
+console.log(it);
+
+const AccDepartment = new AccountingDepartment("d2", []);
+AccDepartment.addReports("this code is so cool xD");
+AccDepartment.printReports();
 
 // const copyOfSomethingDepartment = { describe: somethingDepartment.describe }; ERROR because need Department class signature
 // const copyOfSomethingDepartment = {
