@@ -5,7 +5,7 @@ interface Person {
   great(phrase: string): void;
 }
 
-let user: Person = {
+const user: Person = {
   name: "Artem",
   age: 23,
   great(phrase: string): void {
