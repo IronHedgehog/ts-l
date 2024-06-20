@@ -1,4 +1,5 @@
 class Department {
+  static year = 2024;
   // private id: string;
   // public name: string; // all variables public by default
   protected employees: string[] = [];
@@ -7,6 +8,11 @@ class Department {
     // short init constructor variables
     // this.name = name;
     // this.id = id;
+    //this.year = 1222; //Error: year it's static field for use it we need combine class.staticValue or method
+  }
+
+  static createEmployee(name: string) {
+    return { name };
   }
 
   describe(this: Department) {
@@ -24,6 +30,9 @@ class Department {
     console.log(this.employees);
   }
 }
+
+const employee1 = Department.createEmployee("Petro");
+console.log(employee1);
 
 class ITDepartment extends Department {
   admins: string[];
