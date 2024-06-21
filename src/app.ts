@@ -132,3 +132,15 @@ console.log(
 const userInputElement = document.getElementById("input")! as HTMLInputElement;
 
 userInputElement.value = "Hi!";
+
+// index properties
+
+interface ErrorContainer {
+  // email: invalid email, password: invalid password etc.
+  [anyKey: string]: string;
+}
+
+const errorContainer: ErrorContainer = {
+  email: "invalid email",
+  password: "invalid email",
+};
