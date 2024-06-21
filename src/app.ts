@@ -18,7 +18,8 @@ const admin: employeeAdmin = {
   startDate: new Date(),
 };
 
-type combine = string | number;
+type combinable = string | number;
 type numeric = number | boolean;
 
-type universalType = combine | numeric;
+// intersection type
+type universalType = combinable & numeric;
