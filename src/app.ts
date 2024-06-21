@@ -1,3 +1,16 @@
+// FUNCTIONS
+// we can write interfaces for functions (exception)
+// type addFunc = (a: number, b: number) => number;
+
+// for functions use type, but interface need to know
+interface addFunc {
+  (a: number, b: number): number;
+}
+
+const add: addFunc = (a: number, b: number) => a + b;
+
+// CLASSES
+
 // interface super clear for the objects describe
 // type more flexible and compilation without error
 
