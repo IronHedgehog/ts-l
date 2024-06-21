@@ -23,7 +23,10 @@ type numeric = number | boolean;
 
 // intersection type
 type universalType = combinable & numeric;
-
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+function add(a: number, b: string): string;
+function add(a: string, b: number): string;
 function add(a: combinable, b: combinable) {
   if (typeof a === "string" || typeof b === "string") {
     // type guard needs if we combine two or more types We need to check types
@@ -32,115 +35,118 @@ function add(a: combinable, b: combinable) {
   return a + b;
 }
 
-type unknownEmployee = Admin | Employee;
-function printEmployeeInfo(employee: unknownEmployee): void {
-  console.log("name " + employee.name);
-  if ("privileges" in employee) {
-    // if we have property privileges in object employee (type guard)
-    console.log("privileges " + employee.privileges);
-  }
-  if ("startDate" in employee) {
-    // if we have property startDate in object employee (type guard)
-    console.log("StartDate " + employee.startDate.toLocaleDateString());
-  }
-}
+const result = add("Artem ", 3);
+result.split(" ");
 
-printEmployeeInfo(admin); // work
-printEmployeeInfo({ name: "Max", startDate: new Date() }); //also work without property privileges because of we have if check
+// type unknownEmployee = Admin | Employee;
+// function printEmployeeInfo(employee: unknownEmployee): void {
+//   console.log("name " + employee.name);
+//   if ("privileges" in employee) {
+//     // if we have property privileges in object employee (type guard)
+//     console.log("privileges " + employee.privileges);
+//   }
+//   if ("startDate" in employee) {
+//     // if we have property startDate in object employee (type guard)
+//     console.log("StartDate " + employee.startDate.toLocaleDateString());
+//   }
+// }
 
-class Car {
-  drive() {
-    console.log("driving...");
-  }
-}
-class Truck {
-  drive() {
-    console.log("driving Truck...");
-  }
+// printEmployeeInfo(admin); // work
+// printEmployeeInfo({ name: "Max", startDate: new Date() }); //also work without property privileges because of we have if check
 
-  loadCargo(value: number) {
-    console.log("Load " + value);
-  }
-}
+// class Car {
+//   drive() {
+//     console.log("driving...");
+//   }
+// }
+// class Truck {
+//   drive() {
+//     console.log("driving Truck...");
+//   }
 
-type Vehicle = Car | Truck;
+//   loadCargo(value: number) {
+//     console.log("Load " + value);
+//   }
+// }
 
-const v1: Vehicle = new Car();
-const v2: Vehicle = new Truck();
+// type Vehicle = Car | Truck;
 
-function useVehicle(vehicle: Vehicle) {
-  vehicle.drive();
-  // if ("loadCargo" in vehicle) {
-  //   vehicle.loadCargo(2000);
-  // } work
+// const v1: Vehicle = new Car();
+// const v2: Vehicle = new Truck();
 
-  if (vehicle instanceof Truck) {
-    vehicle.loadCargo(3000);
-  } // check what class have this method if truck all ok.
-}
+// function useVehicle(vehicle: Vehicle) {
+//   vehicle.drive();
+//   // if ("loadCargo" in vehicle) {
+//   //   vehicle.loadCargo(2000);
+//   // } work
 
-useVehicle(v1);
-useVehicle(v2);
+//   if (vehicle instanceof Truck) {
+//     vehicle.loadCargo(3000);
+//   } // check what class have this method if truck all ok.
+// }
 
-//
-// Discriminated Unions
-//
-interface Bird {
-  type: "bird"; // literal type
-  flyingSpeed: number;
-}
+// useVehicle(v1);
+// useVehicle(v2);
 
-interface Horse {
-  type: "horse"; // literal type
-  runningSpeed: number;
-}
+// //
+// // Discriminated Unions
+// //
+// interface Bird {
+//   type: "bird"; // literal type
+//   flyingSpeed: number;
+// }
 
-type Animal = Bird | Horse; // union type
+// interface Horse {
+//   type: "horse"; // literal type
+//   runningSpeed: number;
+// }
 
-function moveAnimal(animal: Animal) {
-  let speed: number;
+// type Animal = Bird | Horse; // union type
 
-  switch (animal.type) {
-    case "bird":
-      speed = animal.flyingSpeed;
-      break;
-    case "horse":
-      speed = animal.runningSpeed;
-      break;
-  }
-  return speed;
-}
-console.log(
-  moveAnimal({
-    type: "bird",
-    flyingSpeed: 1000,
-  })
-);
+// function moveAnimal(animal: Animal) {
+//   let speed: number;
 
-console.log(
-  moveAnimal({
-    type: "horse",
-    runningSpeed: 200,
-  })
-);
+//   switch (animal.type) {
+//     case "bird":
+//       speed = animal.flyingSpeed;
+//       break;
+//     case "horse":
+//       speed = animal.runningSpeed;
+//       break;
+//   }
+//   return speed;
+// }
+// console.log(
+//   moveAnimal({
+//     type: "bird",
+//     flyingSpeed: 1000,
+//   })
+// );
 
-//Type Casting
-//! - said is not a null
-// as HTMLInputElement; Type Casting
+// console.log(
+//   moveAnimal({
+//     type: "horse",
+//     runningSpeed: 200,
+//   })
+// );
 
-// const userInputElement = <HTMLInputElement>document.getElementById("input")!;
-const userInputElement = document.getElementById("input")! as HTMLInputElement;
+// //Type Casting
+// //! - said is not a null
+// // as HTMLInputElement; Type Casting
 
-userInputElement.value = "Hi!";
+// // const userInputElement = <HTMLInputElement>document.getElementById("input")!;
+// const userInputElement = document.getElementById("input")! as HTMLInputElement;
 
-// index properties
+// userInputElement.value = "Hi!";
 
-interface ErrorContainer {
-  // email: invalid email, password: invalid password etc.
-  [anyKey: string]: string;
-}
+// // index properties
 
-const errorContainer: ErrorContainer = {
-  email: "invalid email",
-  password: "invalid email",
-};
+// interface ErrorContainer {
+//   // email: invalid email, password: invalid password etc.
+//   [anyKey: string]: string;
+// }
+
+// const errorContainer: ErrorContainer = {
+//   email: "invalid email",
+//   password: "invalid email",
+// };
