@@ -23,6 +23,8 @@ type numeric = number | boolean;
 
 // intersection type
 type universalType = combinable & numeric;
+
+// FUNCTION OVERLOAD
 function add(a: number, b: number): number;
 function add(a: string, b: string): string;
 function add(a: number, b: string): string;
@@ -37,6 +39,29 @@ function add(a: combinable, b: combinable) {
 
 const result = add("Artem ", 3);
 result.split(" ");
+
+// OPTIONAL CHAINING
+
+const user = {
+  name: "Artem",
+  age: 23,
+  something: { title: "something", else: "else" },
+};
+
+// console.log(user.something && user.something.title);  JS
+console.log(user?.something?.title); // optional chaining
+
+// NULLISH COALESCING
+
+const userInput = ""; //
+
+// const storedData = userInput && "Default value"; // empty string is valid but false value because of this we can see Default value
+
+const storedData = userInput ?? "Default value"; // ?? return Default value only if userInput null or undefined
+
+console.log(storedData);
+
+// TYPE GUARDS
 
 // type unknownEmployee = Admin | Employee;
 // function printEmployeeInfo(employee: unknownEmployee): void {
@@ -89,7 +114,7 @@ result.split(" ");
 // useVehicle(v2);
 
 // //
-// // Discriminated Unions
+// //  DISCRIMINATED UNIONS
 // //
 // interface Bird {
 //   type: "bird"; // literal type
@@ -130,7 +155,7 @@ result.split(" ");
 //   })
 // );
 
-// //Type Casting
+// //TYPE CASTING
 // //! - said is not a null
 // // as HTMLInputElement; Type Casting
 
@@ -139,10 +164,11 @@ result.split(" ");
 
 // userInputElement.value = "Hi!";
 
-// // index properties
+// // INDEX PROPERTIES
 
 // interface ErrorContainer {
 //   // email: invalid email, password: invalid password etc.
+// all key in object where use
 //   [anyKey: string]: string;
 // }
 
