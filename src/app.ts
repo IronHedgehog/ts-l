@@ -32,3 +32,18 @@ const result = mergeObjects<
 // const result = mergeObjects({ name: "Artem", hobby: ["Sport"] }, 61); doesn't work because generic inherit type object
 
 console.log(result);
+interface lengthy {
+  length: number;
+}
+
+const countAndDescribe = <T extends lengthy>(element: T): [T, string] => {
+  let description = "No value here";
+  if (element.length === 1) {
+    description = "Only one element here";
+  } else if (element.length > 1) {
+    description = `${element.length} elements here`;
+  }
+  return [element, description];
+};
+
+console.log(countAndDescribe("Welcome here"));
