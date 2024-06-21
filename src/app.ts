@@ -47,3 +47,12 @@ const countAndDescribe = <T extends lengthy>(element: T): [T, string] => {
 };
 
 console.log(countAndDescribe("Welcome here"));
+// T is any object, U is any key of T
+const extractAndConvert = <T extends object, U extends keyof T>(
+  obj: T,
+  key: U
+) => {
+  return obj[key];
+};
+
+console.log(extractAndConvert({ name: "Artem" }, "name"));
