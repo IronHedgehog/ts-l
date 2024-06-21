@@ -10,8 +10,10 @@
 
 //   great(phrase: string): void;
 // }
+
+// private and public not supported but we have readonly
 interface Greetable {
-  name: string;
+  readonly name: string;
 
   great(phrase: string): void;
 }
@@ -26,6 +28,7 @@ class Person implements Greetable {
 }
 
 const user: Greetable = new Person("Artem", 32);
+// user.name = "123"; gives error because of read only property in interface
 console.log(user);
 
 // const user: Person = {
