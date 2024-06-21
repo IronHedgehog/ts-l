@@ -82,6 +82,9 @@ function useVehicle(vehicle: Vehicle) {
 useVehicle(v1);
 useVehicle(v2);
 
+//
+// Discriminated Unions
+//
 interface Bird {
   type: "bird"; // literal type
   flyingSpeed: number;
@@ -120,3 +123,12 @@ console.log(
     runningSpeed: 200,
   })
 );
+
+//Type Casting
+//! - said is not a null
+// as HTMLInputElement; Type Casting
+
+// const userInputElement = <HTMLInputElement>document.getElementById("input")!;
+const userInputElement = document.getElementById("input")! as HTMLInputElement;
+
+userInputElement.value = "Hi!";
