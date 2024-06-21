@@ -27,7 +27,8 @@ const add: addFunc = (a: number, b: number) => a + b;
 // private and public not supported but we have readonly
 
 interface Named {
-  readonly name: string;
+  readonly name?: string;
+  inputName?: string;
 }
 // extends interface for different objects (maybe we need not Greeatable person but this person need to have name)
 
@@ -37,15 +38,21 @@ interface Greetable extends Named {
 }
 [].join();
 // implement - key word, after use can add many interfaces separate  with coma
+
+// We have optional values (?) because of this everywhere we need to check undefined values(if else statement)
 class Person implements Greetable {
-  constructor(public name: string, public age: number) {}
+  constructor(public name?: string, public age?: number) {}
 
   great(phrase: string): void {
-    console.log(phrase + " " + this.name);
+    if (this.name) {
+      console.log(phrase + " " + this.name);
+    } else {
+      console.log("Hi!");
+    }
   }
 }
 
-const user: Greetable = new Person("Artem", 32);
+const user: Greetable = new Person();
 // user.name = "123"; gives error because of read only property in interface
 console.log(user);
 
