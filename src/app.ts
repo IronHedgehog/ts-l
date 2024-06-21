@@ -12,9 +12,14 @@
 // }
 
 // private and public not supported but we have readonly
-interface Greetable {
-  readonly name: string;
 
+interface Named {
+  readonly name: string;
+}
+// extends interface for different objects (maybe we need not Greeatable person but this person need to have name)
+
+// can extends more than one
+interface Greetable extends Named {
   great(phrase: string): void;
 }
 [].join();
