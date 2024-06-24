@@ -130,3 +130,56 @@ const button = document.querySelector("button")! as HTMLButtonElement;
 //button?.addEventListener("click", p.showMessage.bind(p)); //bind needed context and all work ok. Lets do DECORATOR for AUTOMATICALLY bind
 
 button?.addEventListener("click", p.showMessage); // work with DECORATOR (AutoBind)
+
+interface ValidationConfig {
+  [property: string]: {
+    [validatebleProp: string]: string[];
+  };
+}
+const registeredValidators: ValidationConfig = {};
+
+function Required(target: any, propName: string) {
+  registeredValidators[target.constructor.name] = {
+    ...registeredValidators[target.constructor.name],
+    [propName]: [
+      ...(registeredValidators[target.constructor.name]?.[propName] ?? []),
+      "required",
+    ],
+  };
+}
+
+function PositiveNumber(target: any, propName: string) {
+  registeredValidators[target.constructor.name] = {
+    ...registeredValidators[target.constructor.name],
+    [propName]: [
+      ...(registeredValidators[target.constructor.name]?.[propName] ?? []),
+      "positive",
+    ],
+  };
+}
+
+class Course {
+  @Required
+  title: string;
+  @PositiveNumber
+  price: number;
+
+  constructor(t: string, p: number) {
+    this.title = t;
+    this.price = p;
+  }
+}
+
+const courseForm = document.querySelector("form")! as HTMLFormElement;
+
+courseForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const titleEL = document.getElementById("title")! as HTMLInputElement;
+  const priceEL = document.getElementById("price")! as HTMLInputElement;
+
+  const title = titleEL.value;
+  const price = Number(priceEL.value);
+
+  const createdCourse = new Course(title, price);
+  console.log(createdCourse);
+});
