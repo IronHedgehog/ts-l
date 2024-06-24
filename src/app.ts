@@ -38,6 +38,34 @@ function Log(target: any, propertyName: string | Symbol) {
   console.log(target, propertyName);
 }
 
+// ACCESSOR DECORATOR
+
+function Log2(target: any, name: string, descriptor: PropertyDescriptor) {
+  console.log("ACCESSOR DECORATOR");
+  console.log(target);
+  console.log(name);
+  console.log(descriptor);
+}
+
+// METHOD DECORATOR
+function Log3(target: any, name: string, descriptor: PropertyDescriptor) {
+  console.log("METHOD DECORATOR");
+  console.log(target);
+  console.log(name);
+  console.log(descriptor);
+}
+
+// PARAMETER DECORATOR
+
+function Log4(target: any, name: string | Symbol, position: number) {
+  console.log("PARAMETER DECORATOR");
+  console.log(target);
+  // NAME OF THE METHOD WHERE WE HAVE PARAM
+  console.log(name);
+  // INDEX OF PARAM
+  console.log(position);
+}
+
 class Product {
   @Log
   title: string;
@@ -46,6 +74,7 @@ class Product {
     this.title = t;
   }
 
+  @Log2
   set price(value: number) {
     if (value > 0) {
       this._price = value;
@@ -53,7 +82,9 @@ class Product {
       throw new Error("Price must be positive number");
     }
   }
-  getPriceWithTax(tax: number) {
+
+  @Log3
+  getPriceWithTax(@Log4 tax: number) {
     return this._price * (1 + tax);
   }
 }
