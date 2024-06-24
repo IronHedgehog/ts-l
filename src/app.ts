@@ -99,3 +99,34 @@ class Product {
     return this._price * (1 + tax);
   }
 }
+
+function AutoBind(_: any, _1: string, descriptor: PropertyDescriptor) {
+  const originalMethod = descriptor.value;
+  const updatedDescriptor: PropertyDescriptor = {
+    configurable: true,
+    enumerable: false,
+    get() {
+      const boundFunction = originalMethod.bind(this);
+      return boundFunction;
+    },
+  };
+  return updatedDescriptor;
+}
+class Printer {
+  message: string = "This works!";
+
+  @AutoBind
+  showMessage() {
+    console.log(this.message);
+  }
+}
+
+const p = new Printer();
+
+const button = document.querySelector("button")! as HTMLButtonElement;
+
+//button?.addEventListener("click", p.showMessage); // undefined because this from addEventListener. We need from p
+
+//button?.addEventListener("click", p.showMessage.bind(p)); //bind needed context and all work ok. Lets do DECORATOR for AUTOMATICALLY bind
+
+button?.addEventListener("click", p.showMessage); // work with DECORATOR (AutoBind)
