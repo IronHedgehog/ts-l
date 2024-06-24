@@ -1,5 +1,7 @@
 // decorators starts work when class is defined
 // Decorator in libraries and resources start with capital letter
+
+// CLASS DECORATOR
 function Logger(descriptionString: string) {
   // Decorator factory(can take params and work with them)
   return function (constructor: Function) {
@@ -8,14 +10,23 @@ function Logger(descriptionString: string) {
   };
 }
 
+// CLASS DECORATOR
 function WithTemplate(template: string, hookId: string) {
-  return function (constructor: any) {
-    const hookEl = document.getElementById(hookId);
-    const person = new constructor();
-    if (hookEl) {
-      hookEl.innerHTML = template;
-      hookEl.querySelector("h1")!.textContent = person.name;
-    }
+  // new (return new object(class) with any parameters) and return object with name parameter
+  return function <T extends { new (...args: any[]): { name: string } }>(
+    originalConstructor: T
+  ) {
+    return class extends originalConstructor {
+      constructor(..._: any[]) {
+        super();
+        console.log("render");
+        const hookEl = document.getElementById(hookId);
+        if (hookEl) {
+          hookEl.innerHTML = template;
+          hookEl.querySelector("h1")!.textContent = this.name;
+        }
+      }
+    };
   };
 }
 // Decorators execute from bottom to top but created standart from top to bottom
