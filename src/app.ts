@@ -92,3 +92,30 @@ const numberStorage = new DataStorage<number>();
 // objectStorage.addItem(addedObj);
 // objectStorage.removeItem(addedObj);
 // console.log(objectStorage.getItems());
+
+interface courseGoal {
+  title: string;
+  description: string;
+  data: Date;
+}
+
+function createCourseGoal(
+  title: string,
+  description: string,
+  data: Date
+): courseGoal {
+  // can't do empty object because of type courseGoal need feels.
+
+  // because of this we use utility type PARTIAL. This type say "right here only one part of object next line coming something else"
+  let courseGoal: Partial<courseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.data = data;
+  // we must use Type casting for explain what we have all feels what we need
+  return courseGoal as courseGoal;
+}
+
+const names: Readonly<string[]> = ["Artem", "Max"];
+// because of Readonly utility type we can't do something with value something like Object.freeze()
+// names.push("Anyone");
+// names.pop();
