@@ -18,7 +18,8 @@ function WithTemplate(template: string, hookId: string) {
     }
   };
 }
-// @Logger("LOGGING - PERSON")
+// Decorators execute from bottom to top but created standart from top to bottom
+@Logger("LOGGING - PERSON")
 @WithTemplate("<h1>This is template</h1>", "app")
 class Person {
   name = "Artem";
@@ -30,3 +31,29 @@ class Person {
 
 const pers = new Person();
 console.log(pers);
+
+// PROPERTY DECORATOR
+
+function Log(target: any, propertyName: string | Symbol) {
+  console.log(target, propertyName);
+}
+
+class Product {
+  @Log
+  title: string;
+
+  constructor(t: string, private _price: number) {
+    this.title = t;
+  }
+
+  set price(value: number) {
+    if (value > 0) {
+      this._price = value;
+    } else {
+      throw new Error("Price must be positive number");
+    }
+  }
+  getPriceWithTax(tax: number) {
+    return this._price * (1 + tax);
+  }
+}
