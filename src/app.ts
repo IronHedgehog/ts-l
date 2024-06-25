@@ -131,6 +131,9 @@ const button = document.querySelector("button")! as HTMLButtonElement;
 
 button?.addEventListener("click", p.showMessage); // work with DECORATOR (AutoBind)
 
+// LIBRARY FOR VALIDATE PROPERTY
+// https://github.com/typestack/class-validator
+
 interface ValidationConfig {
   [property: string]: {
     [validatebleProp: string]: string[]; // ["Required", 'positive']
